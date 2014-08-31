@@ -1,7 +1,9 @@
-*[Abstract](#abstract)
-*[Limitations](#limitations)
-*[Team Memebers](#team-members)
-*[Screenshots](#screenshots)
+Quick Links
+-----------
+[Abstract](#abstract)
+[Limitations](#limitations)
+[Team Memebers](#team-members)
+[Screenshots](#screenshots)
 
 Abstract
 ========
