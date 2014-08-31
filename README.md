@@ -1,7 +1,9 @@
-Quick Links
+Navigation
 -----------
+
 [Abstract](#abstract)
 [Limitations](#limitations)
+[Directions For Use](#directions-for-use)
 [Team Memebers](#team-members)
 [Screenshots](#screenshots)
 
@@ -20,10 +22,14 @@ This class crammed so much information into a 15 week session that we have not h
 * Joshua michael Waggoner <joshua@rabbitfighter.net>
 * Dylan Otto Krider <dkrider@comcast.net>
 
+Directions For Use
+==================
+
+Coming soon...
+
 Screenshots
 ===========
 
 ![Picture](http://rabbitfighter.net/wp-content/uploads/2013/11/3DEtchASketchInAction.png)
 
-*[Team Memebers](#team-members)
-*[Abstract](#abstract)
+
