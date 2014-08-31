@@ -2,3 +2,8 @@
 ================
 
 A 3D etch a sketch in space essentially. You are in space, and you can lay down blocks anywhere you move, or erase them.
+
+*[Team Memebers](#team-members)
+
+#<a name="team-members"></a>Team Members
+* Joshua michael Waggoner <joshua@rabbitfighter.net>
