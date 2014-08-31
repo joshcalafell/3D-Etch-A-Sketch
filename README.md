@@ -1,11 +1,11 @@
 Navigation
 -----------
 
-[Abstract](#abstract)
-[Limitations](#limitations)
-[Directions For Use](#directions-for-use)
-[Team Memebers](#team-members)
-[Screenshots](#screenshots)
+[Abstract](#abstract) | 
+[Limitations](#limitations) | 
+[Directions For Use](#directions-for-use) | 
+[Team Memebers](#team-members) | 
+[Screenshots](#screenshots) | 
 
 Abstract
 ========
