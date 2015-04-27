@@ -1,6 +1,10 @@
 
 import java.util.Scanner;
 
+/*
+* @author Joshua Michael Waggoner (@rabbitfighter81) and Dylan Otto Krider
+* Triple represents a 3D point in space.
+*/
 public class Triple {
 	public double x;
 	public double y;

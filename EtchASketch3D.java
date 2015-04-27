@@ -1,4 +1,3 @@
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +13,10 @@ import org.newdawn.slick.util.ResourceLoader;
 import static org.lwjgl.opengl.GL11.*;
 
 /**
- * @authors Joshua Michael Waggoner and Dylan OttoKrider
+ * @author Joshua Michael Waggoner (@rabbitfighter81) and Dylan Otto Krider
+ *
+ * This is a project Dylan and I did for our Games Programming
+ * class. It's basically a 3D etch-a-sketch in space. 
  * 
  */
 public class EtchASketch3D extends Basic {
@@ -24,7 +26,7 @@ public class EtchASketch3D extends Basic {
 		app.start();
 	}
 
-	// instance variables for camera stuff:
+	// camera stuff
 	private Triple camPos;
 	private Triple penPos;
 	private double camAzimuth;
@@ -33,8 +35,8 @@ public class EtchASketch3D extends Basic {
 	private Texture texture3;
 
 	// Array Lists
-	private ArrayList<Triple> list;
-	private ArrayList<Triple> blocksIn;
+	private ArrayList < Triple > list;
+	private ArrayList < Triple > blocksIn;
 
 	// draw. erase
 	private boolean draw, erase;
@@ -60,9 +62,7 @@ public class EtchASketch3D extends Basic {
 
 	public EtchASketch3D() {
 		super(
-				"EtchASketch3D --- Pen Keys: Up, Down, Left, Right, Minus, Plus --- "
-						+ "Ship Keys: L, R, U, D, F, B --- Erase: E --- Create: C --- "
-						+ "Move Freely: M --- Reset Camera: Z", 1000, 500, 60);
+			"EtchASketch3D --- Pen Keys: Up, Down, Left, Right, Minus, Plus --- " + "Ship Keys: L, R, U, D, F, B --- Erase: E --- Create: C --- " + "Move Freely: M --- Reset Camera: Z", 1000, 500, 60);
 		draw = true;
 		erase = false;
 		camPos = new Triple(600, 600, 0);
@@ -74,16 +74,16 @@ public class EtchASketch3D extends Basic {
 
 		// try to open the file and get a scanner
 		try {
-			//file = openFile();
+			file = openFile();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		// assign a texture
 		texture3 = getTexture("PNG", "future.png", true);
-		
+
 		// new array list for boxes
-		list = new ArrayList<Triple>();
+		list = new ArrayList < Triple > ();
 
 		// get the blocks from the file, if it exists
 		if (file != null) {
@@ -93,9 +93,9 @@ public class EtchASketch3D extends Basic {
 			}
 		}
 
-		
+
 		//******OPEN GL STUFF*******//
-		
+
 		// Allow depth buffer
 		glEnable(GL_DEPTH_TEST);
 
@@ -106,13 +106,13 @@ public class EtchASketch3D extends Basic {
 
 		// set the background color to dark blueish.
 		glClearColor(0.05f, .011f, 0.05f, 1.0f);
-		
+
 		//******END OPEN GL STUFF*******//
 
 	}
-	
 
-	
+
+
 
 	public void display() {
 
@@ -157,10 +157,7 @@ public class EtchASketch3D extends Basic {
 
 		// view transform:
 		// gluLookAt( eye point, a point along line of sight, up vector )
-		GLU.gluLookAt((float) camPos.x, (float) camPos.y, (float) camPos.z,
-				(float) (camPos.x + Math.cos(Math.toRadians(camAzimuth))),
-				(float) (camPos.y + Math.sin(Math.toRadians(camAzimuth))),
-				(float) camPos.z, 0, 0, 1);
+		GLU.gluLookAt((float) camPos.x, (float) camPos.y, (float) camPos.z, (float)(camPos.x + Math.cos(Math.toRadians(camAzimuth))), (float)(camPos.y + Math.sin(Math.toRadians(camAzimuth))), (float) camPos.z, 0, 0, 1);
 
 		// draw some things with model transforms:
 
@@ -261,10 +258,8 @@ public class EtchASketch3D extends Basic {
 			}
 
 			if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-				if (draw == true)
-					draw = false;
-				else
-					draw = true;
+				if (draw == true) draw = false;
+				else draw = true;
 
 			}
 			if (Keyboard.isKeyDown(Keyboard.KEY_Z)) {
@@ -280,11 +275,10 @@ public class EtchASketch3D extends Basic {
 
 			for (int i = 0; i < list.size(); i++) {
 				// if the pen is on a box that's already there.
-				if (((list.get(i).x == penPos.x && list.get(i).y == penPos.y) && (list
-						.get(i).z == penPos.z))) {
+				if (((list.get(i).x == penPos.x && list.get(i).y == penPos.y) && (list.get(i).z == penPos.z))) {
 					overlap = true;
 				}
-			}// end for
+			} // end for
 
 			// if there's no overlap
 			if (!overlap) {
@@ -292,7 +286,7 @@ public class EtchASketch3D extends Basic {
 				numberOfBoxes++;
 			} else {
 				// System.out.println(overlap);
-			}// end else/if
+			} // end else/if
 
 		} else if (erase == true) {
 			erase();
@@ -309,17 +303,16 @@ public class EtchASketch3D extends Basic {
 			block(new Triple(list.get(i).x, list.get(i).y, list.get(i).z), 0);
 		}
 
-	}// end box
+	} // end box
 
 	private void erase() {
 		for (int i = 0; i < list.size() - 1; i++) {
-			if (penPos.x == list.get(i).x && penPos.y == list.get(i).y
-					&& penPos.z == list.get(i).z) {
+			if (penPos.x == list.get(i).x && penPos.y == list.get(i).y && penPos.z == list.get(i).z) {
 				list.remove(i);
 				numberOfBoxes--;
 			}
 		}
-	}// end erase
+	} // end erase
 
 	private void resetCamera() {
 		// camPos = new Triple(600, 600, 0);
@@ -327,15 +320,14 @@ public class EtchASketch3D extends Basic {
 		camPos.y = penPos.y - CAMERA_DISTANCE;
 		camPos.z = penPos.z;
 		camAzimuth = 90;
-	}// end reset camera
+	} // end reset camera
 
 	@SuppressWarnings("resource")
 	public Scanner openFile() {
 
 		// Scanner fo input
-		Scanner scannerIn = new Scanner(System.in);
-		System.out
-				.println("\nPlease enter a filename, or 'new' to start fresh");
+		Scanner scannerIn = new Scanner(System. in );
+		System.out.println("\nPlease enter a filename, or 'new' to start fresh");
 		filename = scannerIn.next();
 
 		Scanner fileScanner;
@@ -346,15 +338,14 @@ public class EtchASketch3D extends Basic {
 
 		} catch (FileNotFoundException e) {
 
-			System.out.println("\nCould not find the specified file. "
-					+ "\nMust be located within the resources folder.\n");
+			System.out.println("\nCould not find the specified file. " + "\nMust be located within the resources folder.\n");
 			e.printStackTrace();
 			return null;
-		}// end try/catch
+		} // end try/catch
 
 		return fileScanner;
 
-	}// end openFile
+	} // end openFile
 
 	private void saveBlocks() {
 		try {
@@ -363,35 +354,34 @@ public class EtchASketch3D extends Basic {
 			// PrintWriter out = new PrintWriter("exampleTest.txt");
 			for (int i = 0; i < list.size(); i++) {
 				// out.write("test " + "\n");
-				out.write(list.get(i).x + " " + list.get(i).y + " "
-						+ list.get(i).z);
+				out.write(list.get(i).x + " " + list.get(i).y + " " + list.get(i).z);
 				// out.write("\n");
 				out.newLine();
 			}
 			out.close();
-		} catch (IOException e) {
-		}
+		} catch (IOException e) {}
 		System.exit(0);
-	}// end saveBlocks
+	} // end saveBlocks
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private ArrayList<Triple> getBlocks(Scanner file) {
+	@SuppressWarnings({
+		"rawtypes", "unchecked"
+	})
+	private ArrayList < Triple > getBlocks(Scanner file) {
 
 		numEntries = file.nextInt();
 
-		ArrayList l = new ArrayList<Triple>();
+		ArrayList l = new ArrayList < Triple > ();
 
 		if (numEntries > 0) {
 			for (int i = 0; i < numEntries; i++) {
-				l.add(new Triple(file.nextDouble(), file.nextDouble(), file
-						.nextDouble()));
+				l.add(new Triple(file.nextDouble(), file.nextDouble(), file.nextDouble()));
 			}
 		}
 
 		// return the points from file
 		return l;
 
-	}// end getPoints
+	} // end getPoints
 
 	private void block(Triple triple, double angle) {
 		glPushMatrix();
@@ -400,129 +390,124 @@ public class EtchASketch3D extends Basic {
 		glScaled(20, 20, 20);
 		standardCube();
 		glPopMatrix();
-	}// end block
+	} // end block
 
 	// draw a 2 by 2 by 2 axis-aligned rectangular prism
 	// centered at the origin
 	private void standardCube() {
 		// front face
-		glEnable( GL_TEXTURE_2D );
-		glEnable( GL_BLEND );
-	    //texture2.bind();
+		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_BLEND);
+		//texture2.bind();
 		//glColor3f(1.0f, 0.0f, 0.0f);
 		texture3.bind();
 		glBegin(GL_POLYGON);
-		glTexCoord2f( 0, 0 );
+		glTexCoord2f(0, 0);
 		glVertex3d(-1, -1, -1);
-		glTexCoord2f( .5f, 0 );
+		glTexCoord2f(.5f, 0);
 		glVertex3d(1, -1, -1);
-		glTexCoord2f( .5f, .5f );
+		glTexCoord2f(.5f, .5f);
 		glVertex3d(1, -1, 1);
-		glTexCoord2f( 0, .5f );
+		glTexCoord2f(0, .5f);
 		glVertex3d(-1, -1, 1);
 		glEnd();
 
 		// rear face
 		texture3.bind();
-	    glBegin( GL_POLYGON );
-	      glTexCoord2f(0,0);
-	      glVertex3d( 1, 1, -1 );
-	      glTexCoord2f(.5f,0);
-	      glVertex3d( -1, 1, -1 );
-	      glTexCoord2f(.5f,.5f);
-	      glVertex3d( -1, 1, 1 );
-	      glTexCoord2f(0,.5f);
-	      glVertex3d( 1, 1, 1 );
-	    glEnd();
+		glBegin(GL_POLYGON);
+		glTexCoord2f(0, 0);
+		glVertex3d(1, 1, -1);
+		glTexCoord2f(.5f, 0);
+		glVertex3d(-1, 1, -1);
+		glTexCoord2f(.5f, .5f);
+		glVertex3d(-1, 1, 1);
+		glTexCoord2f(0, .5f);
+		glVertex3d(1, 1, 1);
+		glEnd();
 
 		// right face
-	    texture3.bind();
-	    glBegin( GL_POLYGON );
-	      glTexCoord2f(0,0);
-	      glVertex3d( 1, -1, -1 );
-	      glTexCoord2f(.5f,0);
-	      glVertex3d( 1, 1, -1 );
-	      glTexCoord2f(.5f,.5f);
-	      glVertex3d( 1, 1, 1 );
-	      glTexCoord2f(0,.5f);
-	      glVertex3d( 1, -1, 1 );
-	    glEnd();
+		texture3.bind();
+		glBegin(GL_POLYGON);
+		glTexCoord2f(0, 0);
+		glVertex3d(1, -1, -1);
+		glTexCoord2f(.5f, 0);
+		glVertex3d(1, 1, -1);
+		glTexCoord2f(.5f, .5f);
+		glVertex3d(1, 1, 1);
+		glTexCoord2f(0, .5f);
+		glVertex3d(1, -1, 1);
+		glEnd();
 
-	    // left face
-	    // glColor3f( 1.0f, 0.0f, 1.0f );
-	    texture3.bind();
-	    glBegin( GL_POLYGON );
-	      glTexCoord2f(0,0);
-	      glVertex3d( -1, 1, -1 );
-	      glTexCoord2f( .5f, 0 );
-	      glVertex3d( -1, -1, -1 );
-	      glTexCoord2f( .5f, .5f);
-	      glVertex3d( -1, -1, 1 );
-	      glTexCoord2f( 0,.5f);
-	      glVertex3d( -1, 1, 1 );
-	    glEnd();
+		// left face
+		// glColor3f( 1.0f, 0.0f, 1.0f );
+		texture3.bind();
+		glBegin(GL_POLYGON);
+		glTexCoord2f(0, 0);
+		glVertex3d(-1, 1, -1);
+		glTexCoord2f(.5f, 0);
+		glVertex3d(-1, -1, -1);
+		glTexCoord2f(.5f, .5f);
+		glVertex3d(-1, -1, 1);
+		glTexCoord2f(0, .5f);
+		glVertex3d(-1, 1, 1);
+		glEnd();
 
-	   // glDisable( GL_TEXTURE_2D );
-	    //glDisable( GL_BLEND );
+		// glDisable( GL_TEXTURE_2D );
+		//glDisable( GL_BLEND );
 
-	    // top face
-	    // glColor3f( 1.0f, 1.0f, 0.0f );
-	    texture3.bind();
-	    glBegin( GL_POLYGON );
-	      glTexCoord2f( 0, 0 );
-	      glVertex3d( -1, -1, 1 );
-	      glTexCoord2f( .75f, 0 );
-	      glVertex3d( 1, -1, 1 );
-	      glTexCoord2f( .75f, .5f );
-	      glVertex3d( 1, 1, 1 );
-	      glTexCoord2f( 0, .5f );
-	      glVertex3d( -1, 1, 1 );
-	    glEnd();
+		// top face
+		// glColor3f( 1.0f, 1.0f, 0.0f );
+		texture3.bind();
+		glBegin(GL_POLYGON);
+		glTexCoord2f(0, 0);
+		glVertex3d(-1, -1, 1);
+		glTexCoord2f(.75f, 0);
+		glVertex3d(1, -1, 1);
+		glTexCoord2f(.75f, .5f);
+		glVertex3d(1, 1, 1);
+		glTexCoord2f(0, .5f);
+		glVertex3d(-1, 1, 1);
+		glEnd();
 
-	    // bottom face
-	    //glColor3f( 0.0f, 1.0f, 1.0f );
-	    texture3.bind();
-	    glBegin( GL_POLYGON );
-	      glTexCoord2f(.75f,0);
-	     glVertex3d( -1, -1, -1 );
-	     glTexCoord2f(.75f,.5f);
-	      glVertex3d( -1, 1, -1 );
-	      glTexCoord2f(0,.5f);
-	      glVertex3d( 1, 1, -1 );
-	      glTexCoord2f(0,0);
-	      glVertex3d( 1, -1, -1 );
-	    glEnd();
+		// bottom face
+		//glColor3f( 0.0f, 1.0f, 1.0f );
+		texture3.bind();
+		glBegin(GL_POLYGON);
+		glTexCoord2f(.75f, 0);
+		glVertex3d(-1, -1, -1);
+		glTexCoord2f(.75f, .5f);
+		glVertex3d(-1, 1, -1);
+		glTexCoord2f(0, .5f);
+		glVertex3d(1, 1, -1);
+		glTexCoord2f(0, 0);
+		glVertex3d(1, -1, -1);
+		glEnd();
 
 	}
-	
-	 private Texture getTexture( String type, String fileName, boolean showInfo )
-	  {
-	    Texture texture = null;
 
-	    try
-	    {
-	      texture = TextureLoader.getTexture( type,
-	                 ResourceLoader.getResourceAsStream( fileName ), true );
+	private Texture getTexture(String type, String fileName, boolean showInfo) {
+		Texture texture = null;
 
-	      if( showInfo )
-	      {
-	        System.out.println("Texture loaded: "+texture);
-	        System.out.println(">> Image width: "+texture.getImageWidth());
-	        System.out.println(">> Image height: "+texture.getImageHeight());
-	        System.out.println(">> Texture width: "+texture.getTextureWidth());
-	        System.out.println(">> Texture height: "+texture.getTextureHeight());
-	        System.out.println(">> Texture ID: "+texture.getTextureID());
-	      }
-	    }
-	    catch (IOException e)
-	    {
-	      System.out.println("Loading of texture from file [" + fileName + "] failed");
-	      e.printStackTrace();
-	      System.exit(1);
-	    }
+		try {
+			texture = TextureLoader.getTexture(type,
+			ResourceLoader.getResourceAsStream(fileName), true);
 
-	    return texture;
+			if (showInfo) {
+				System.out.println("Texture loaded: " + texture);
+				System.out.println(">> Image width: " + texture.getImageWidth());
+				System.out.println(">> Image height: " + texture.getImageHeight());
+				System.out.println(">> Texture width: " + texture.getTextureWidth());
+				System.out.println(">> Texture height: " + texture.getTextureHeight());
+				System.out.println(">> Texture ID: " + texture.getTextureID());
+			}
+		} catch (IOException e) {
+			System.out.println("Loading of texture from file [" + fileName + "] failed");
+			e.printStackTrace();
+			System.exit(1);
+		}
 
-	  }// getTexture
+		return texture;
+
+	} // getTexture
 
 }
