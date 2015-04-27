@@ -6,6 +6,7 @@ Navigation
 [Directions For Use](#directions-for-use) | 
 [Team Memebers](#team-members) | 
 [Screenshots](#screenshots) | 
+[TODO](#todo)
 
 Abstract
 ========
@@ -31,5 +32,9 @@ Screenshots
 ===========
 
 ![Picture](http://rabbitfighter.net/wp-content/uploads/2013/11/3DEtchASketchInAction.png)
+
+Todo
+=====
+Setup auto-deployment with Gradle.
 
 
