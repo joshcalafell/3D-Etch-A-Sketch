@@ -1,3 +1,4 @@
+package org.gradle.rabbitfighter.game;
 
 import java.util.Scanner;
 

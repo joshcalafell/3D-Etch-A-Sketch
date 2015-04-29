@@ -16,6 +16,7 @@
 
     @author: Joshua Michael Waggoner (@rabbitfighter81)
 */
+package org.gradle.rabbitfighter.game;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;

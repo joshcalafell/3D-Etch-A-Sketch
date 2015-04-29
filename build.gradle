@@ -1,0 +1,32 @@
+/*
+* Gradle file for our simple LWJGL/OpenGL game
+* Author: Joshua Michael Waggoner (@rabbitfighter81)
+*/
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile files('libs/jar/lwjgl.jar')
+    runtime files('libs/natives')
+}
+
+jar {
+    from configurations.compile.collect { zipTree it }
+    manifest.attributes 'Main-Class': 'org.gradle.rabbitfighter.game.EtchASketch3D'
+}
+
+task startMsg << {
+    println "Starting game..."
+}
+
+task runJar(dependsOn: startMsg){
+    main 'org.gradle.rabbitfighter.game.EtchASketch3D'
+    classpath = runtimeClasspath
+}
