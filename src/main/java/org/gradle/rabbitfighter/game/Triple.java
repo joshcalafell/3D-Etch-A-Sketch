@@ -1,11 +1,5 @@
 package org.gradle.rabbitfighter.game;
 
-import java.util.Scanner;
-
-/*
-* @author Joshua Michael Waggoner (@rabbitfighter81) and Dylan Otto Krider
-* Triple represents a 3D point in space.
-*/
 public class Triple {
 	public double x;
 	public double y;
@@ -16,8 +10,6 @@ public class Triple {
 		this.y = y;
 		this.z = z;
 	}
-
-	
 
 	// produce the vector from this point to the other point
 	public Triple vectorTo(Triple other) {

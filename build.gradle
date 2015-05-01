@@ -1,9 +1,15 @@
 /*
-* Gradle file for our simple LWJGL/OpenGL game
+* Gradle setup for LightningBolt
 * Author: Joshua Michael Waggoner (@rabbitfighter81)
 */
 
 apply plugin: 'java'
+version = '1.0'
+
+
+/* 
+* Repositories to query 
+*/
 
 repositories {
     mavenCentral()
@@ -12,21 +18,59 @@ repositories {
     }
 }
 
+/*
+* Dependencies for program
+*/
+
 dependencies {
-    compile files('libs/jar/lwjgl.jar')
-    runtime files('libs/natives')
+    compile files(
+        [
+          'libs/jar/lwjgl.jar',
+          'libs/jar/lwjgl_util.jar',
+          'libs/jar/slick.jar'
+        ]
+    )
 }
+
+/*
+* Jar configuration
+*/
 
 jar {
     from configurations.compile.collect { zipTree it }
-    manifest.attributes 'Main-Class': 'org.gradle.rabbitfighter.game.EtchASketch3D'
+    manifest.attributes 'Main-Class': 'org.gradle.rabbitfighter.game.Ex6' 
 }
 
-task startMsg << {
-    println "Starting game..."
+/*
+* Runs the built jar file allowing user to play the game.
+*/
+
+task runJar(type: JavaExec, dependsOn: jar) {
+    main 'org.gradle.rabbitfighter.game.Ex6'
+    classpath = sourceSets.main.runtimeClasspath 
 }
 
-task runJar(dependsOn: startMsg){
-    main 'org.gradle.rabbitfighter.game.EtchASketch3D'
-    classpath = runtimeClasspath
+/*
+* Load proper native library path depending on OS type.
+* Note: This affects all tasks with type: JavaExec
+*/
+
+tasks.withType(JavaExec) {
+
+    def os = System.getProperty("os.name").toLowerCase()
+    
+    if (os.contains("windows")) { 
+        systemProperty "java.library.path", file("./libs/natives/windows")
+    }
+
+    else if (os.contains("linux")) { 
+        systemProperty "java.library.path", file("./libs/natives/linux")
+    }
+
+    else if (os.contains("mac")) { 
+        systemProperty "java.library.path", file("./libs/natives/macosx")
+    }
+
 }
+
+//EOF

@@ -1,3 +1,5 @@
+package org.gradle.rabbitfighter.game;
+
 /*  framework to be extended to make desired
     graphical, event-driven application
 
@@ -13,23 +15,20 @@
         update:  update instance variables to simulate advancing
                  time and/or response to inputs
         display:  draw graphics showing current state of things
-
-    @author: Joshua Michael Waggoner (@rabbitfighter81)
-*/
-package org.gradle.rabbitfighter.game;
+ */
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public class Basic {
-  // test this basic application 
+  // test this basic application
   public static void main(String[] args) {
     Basic app = new Basic("Basic", 1000, 500, 60);
     app.start();
-  } 
+  }// main
 
-  // instance variables 
+  // instance variables
   private String title; // title of the application
   private int frameNumber; // total number of frames displayed
   private int framesPerSecond; // target fps
@@ -70,7 +69,8 @@ public class Basic {
     while (running && (!closeable || !Display.isCloseRequested())) {
       frameNumber++;
 
-      // these three methods should be overridden by extending application:
+      // these three methods should be overridden by extending
+      // application:
       processInputs();
       update();
       display();
@@ -81,9 +81,10 @@ public class Basic {
 
     Display.destroy();
 
-  } 
+  }// start
 
-  // ------------------ these methods can be called by the application --------
+  // ------------------ these methods can be called by the application
+  // --------
 
   protected int getPixelWidth() {
     return pixelWidth;
@@ -93,7 +94,7 @@ public class Basic {
     return pixelHeight;
   }
 
-  // report which frame 
+  // report which frame
   protected int getFrameNumber() {
     return frameNumber;
   }
@@ -121,12 +122,16 @@ public class Basic {
 
   // ------------------ these methods should be overridden ------------------
 
-  protected void init() {}
+  protected void init() {
+  }
 
-  protected void processInputs() {}
+  protected void processInputs() {
+  }
 
-  protected void update() {}
+  protected void update() {
+  }
 
-  protected void display() {}
+  protected void display() {
+  }
 
-} 
+}// Basic
