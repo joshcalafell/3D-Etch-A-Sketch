@@ -1,6 +1,8 @@
 3d-Etch-A-Sketch
 ================
 
+[![Build Status](https://travis-ci.org/rabbitfighter81/Simple-Tank-Game.png)](#https://travis-ci.org/rabbitfighter81/3d-Etch-A-Sketch.png)
+
 Navigation
 -----------
 [3d-Etch-A-Sketch](#3d-etch-a-sketch) |
